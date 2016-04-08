@@ -1,5 +1,12 @@
 " My own config stuff
 " Load this with source e.g.: source ~/mycfg/.vimrc in parent vimrc.
+"disable arrow keys - Break the habit!
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+
+"Set my leader to be space bar
 nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 set number
