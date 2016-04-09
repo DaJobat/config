@@ -9,6 +9,10 @@ nnoremap <Right> <Nop>
 "Set my leader to be space bar
 nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
+
+"Set colorscheme to monokai, requires github.com/sickill/vim-monokai to be in .vim/colors directory.
+syntax enable
+colorscheme monokai
 set number
 set expandtab
 set shiftwidth=2
@@ -18,12 +22,13 @@ set nocompatible
 set cursorline
 set showcmd   "shows command in bottom right
 set wildmenu  "shows menu when you press tab 
+set bg=dark
 
 "Horrible stuff so cygwin shows cursor as a block in normal mode.
-let &t_ti.="\e[1 q"
-let &t_SI.="\e[5 q"
-let &t_EI.="\e[1 q"
-let &t_te.="\e[0 q"
+"let &t_ti.="\e[1 q"
+"let &t_SI.="\e[5 q"
+"let &t_EI.="\e[1 q"
+"let &t_te.="\e[0 q"
 
 "SEARCH
 set incsearch "incremental search as characters are entered
@@ -38,3 +43,4 @@ set splitright
 nnoremap <leader>vr :vertical resize 
 
 let g:netrw_liststyle=3
+
