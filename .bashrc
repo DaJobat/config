@@ -10,3 +10,4 @@ alias cp="echo 'USE RSYNC!'"
 export IGNOREEOF=100
 # make PS behave like BSD (i.e. not complain when i do ps -x)
 export PS_PERSONALITY=bsd
+set -o vi
