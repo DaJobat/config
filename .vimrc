@@ -11,7 +11,7 @@ nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 
 "Set colorscheme to monokai, requires github.com/sickill/vim-monokai to be in .vim/colors directory.
-syntax enable
+set syntax=""
 set number
 set relativenumber
 set expandtab
@@ -22,6 +22,8 @@ set nocompatible
 set cursorline
 set showcmd   "shows command in bottom right
 set wildmenu  "shows menu when you press tab 
+set modelines=0
+set nomodeline
 
 "Horrible stuff so cygwin shows cursor as a block in normal mode.
 let &t_ti.="\e[1 q"
@@ -76,4 +78,4 @@ function GenPass(website)
   execute "normal i " . a:website . "\n" . l:p
 endfunction
 
-command  -nargs=1 Pwd call GenPass(<args>)
+command  -nargs=1 Pass call GenPass(<args>)
