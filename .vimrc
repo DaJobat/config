@@ -11,7 +11,9 @@ nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 
 "Set colorscheme to monokai, requires github.com/sickill/vim-monokai to be in .vim/colors directory.
-set syntax=""
+"set syntax=""
+syntax on
+filetype plugin indent on
 set number
 set relativenumber
 set expandtab
@@ -19,11 +21,12 @@ set shiftwidth=2
 set ts=2
 set autoindent
 set nocompatible
-set cursorline
+"set cursorline
 set showcmd   "shows command in bottom right
 set wildmenu  "shows menu when you press tab 
 set modelines=0
 set nomodeline
+set listchars+=space:_ "shows spaces as _ when :set list is enabled
 
 "Horrible stuff so cygwin shows cursor as a block in normal mode.
 let &t_ti.="\e[1 q"
@@ -36,46 +39,25 @@ set incsearch "incremental search as characters are entered
 set hlsearch  "highlight search matches
 set showmatch "hightlight matching parens
 nnoremap <leader><space> :nohlsearch<CR> 
+nnoremap <leader>d :GoDoc<CR> 
 " ^clear search by double tapping space
-
-"default encryption of files with :X to blowfish2
-set cm=blowfish2
+nnoremap <leader>s :if exists("g:syntax_on") <Bar>
+\ syntax off <Bar>
+\ else <Bar>
+\ syntax enable <Bar>
+\ endif <CR>
 
 "SPLIT
 set splitbelow
 set splitright
 nnoremap <leader>vr :vertical resize 
+nnoremap <leader>t :vertical terminal<CR>
 
 let g:netrw_liststyle=3
+let g:neocomplete#enable_at_startup = 1
+set path+=**/*
 
-function CryptoRand(max)
-  return system("cat /dev/random | tr -dc '0-9' | fold -w 8 | head -n 1") % a:max
-endfunction
+"Auto lcd to current file
+autocmd BufEnter * silent! lcd %:p:h
 
-function GenPass(website)
-  let wordlist = readfile("/usr/share/dict/words")
-  call filter(wordlist, "v:val !~ ''''" )
-  let passlist = []
-  for i in [0,1,2,3,4]
-    let x = CryptoRand(len(wordlist))
-    let y = get(wordlist,x)
-    call add(passlist, y)
-  endfor
-
-  let p = join(passlist, "")
-  let pl2 = []
-  for c in split(p, '\zs')
-    let x = CryptoRand(5)
-    if x ==? 1
-      call add(pl2, c)
-    elseif x ==? 2
-      call add(pl2, CryptoRand(9))
-    elseif x ==? 3
-      call add(pl2, toupper(c))
-    endif
-  endfor
-  let p = join(pl2, "")
-  execute "normal i " . a:website . "\n" . l:p
-endfunction
-
-command  -nargs=1 Pass call GenPass(<args>)
+colorscheme alduin
